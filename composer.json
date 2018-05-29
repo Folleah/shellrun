@@ -1,0 +1,11 @@
+{
+    "name": "folleah/shellrun",
+    "type": "library",
+    "authors": [
+        {
+            "name": "folleah",
+            "email": "folleah5@gmail.com"
+        }
+    ],
+    "require": {}
+}
