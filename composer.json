@@ -1,6 +1,6 @@
 {
     "name": "folleah/shellrun",
-    "description": "Command Line OOP-style executor",
+    "description": "Command Line OOP-style executor.",
     "type": "library",
     "version": "0.1.0",
     "authors": [
