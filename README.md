@@ -7,8 +7,8 @@ require 'vendor/autoload.php';
 
 // run php in interactive mode
 $runtime = (new Command('php'))
-                    ->addArg('-a')
-                    ->runtime();
+    ->withArg('-a')
+    ->runtime();
 
 $runtime->write("echo 'test';");
 $runtime->read();
