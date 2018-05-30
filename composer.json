@@ -1,5 +1,6 @@
 {
     "name": "folleah/shellrun",
+    "description": "Command Line OOP-style executor",
     "type": "library",
     "authors": [
         {
@@ -7,7 +8,9 @@
             "email": "folleah5@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": "^7.0"
+    },
     "autoload": {
         "psr-4": {
             "Folleah\\Shellrun\\": "src/"
