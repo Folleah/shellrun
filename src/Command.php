@@ -14,15 +14,19 @@ class Command
     public function withArgs(array $args) : self
     {
         foreach ($args as $arg => $val) {
-            $this->command .= " $arg=$val";
+            $this->command .= " $arg" . null === $val
+                ? "=$val"
+                : "";
         }
 
         return $this;
     }
 
-    public function withArg($argument, $value) : self
+    public function withArg($argument, $value = null) : self
     {
-        $this->command .= " $argument=$value";
+        $this->command .= " $argument" . null === $value
+            ? "=$value"
+            : "";
 
         return $this;
     }
