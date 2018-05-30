@@ -27,35 +27,13 @@ class Command
         return $this;
     }
 
-    public function call()
+    public function getCommand() : string
     {
-        $descriptorSpec = [
-            'read' => ['pipe', 'r'],
-            'write' => ['pipe', 'w'],
-            'error' => ['file', '/tmp/error-output.txt', 'a'],
-        ];
+        return $this->command;
+    }
 
-        $cwd = '/tmp';
-        $env = array('some_option' => 'aeiou');
-        $process = proc_open($this->command, $descriptorSpec, $pipes, $cwd, $env);
-
-        if (\is_resource($process)) {
-            // $pipes теперь выглядит так:
-            // 0 => записывающий обработчик, подключенный к дочернему stdin
-            // 1 => читающий обработчик, подключенный к дочернему stdout
-            // Вывод сообщений об ошибках будет добавляться в /tmp/error-output.txt
-
-            fwrite($pipes['write'], '<?php print_r($_ENV); ?>');
-            fclose($pipes['write']);
-
-            echo stream_get_contents($pipes['read']);
-            fclose($pipes['read']);
-
-            // Важно закрывать все каналы перед вызовом
-            // proc_close во избежание мертвой блокировки
-            $return_value = proc_close($process);
-
-            echo "команда вернула $return_value\n";
-        }
+    public function runtime() : CommandProcess
+    {
+        return new CommandProcess($this);
     }
 }
