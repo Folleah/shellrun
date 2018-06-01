@@ -4,6 +4,9 @@ namespace Folleah\Shellrun;
 
 class CommandProcess
 {
+    public const PIPE_READ = 0;
+    public const PIPE_WRITE = 1;
+
     private $process;
     private $readStream;
     private $writeStream;
@@ -42,12 +45,10 @@ class CommandProcess
 
     public function read() : string
     {
-        $data = stream_get_contents($this->writeStream);
-
-        return $data;
+        return stream_get_contents($this->writeStream, 4096, -1);
     }
 
-    public function __destruct()
+    public function finish() : void
     {
         fclose($this->readStream);
         fclose($this->writeStream);
