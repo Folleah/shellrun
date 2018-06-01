@@ -38,19 +38,19 @@ class CommandProcess
     public function write(string $data) : void
     {
         fwrite($this->readStream, $data);
-        fclose($this->readStream);
     }
 
     public function read() : string
     {
         $data = stream_get_contents($this->writeStream);
-        fclose($this->writeStream);
 
         return $data;
     }
 
     public function __destruct()
     {
+        fclose($this->readStream);
+        fclose($this->writeStream);
         proc_close($this->process);
     }
 }
